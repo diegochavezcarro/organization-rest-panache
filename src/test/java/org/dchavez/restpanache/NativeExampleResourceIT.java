@@ -1,4 +1,4 @@
-package org.acme.resteasy;
+package org.dchavez.restpanache;
 
 import io.quarkus.test.junit.NativeImageTest;
 
