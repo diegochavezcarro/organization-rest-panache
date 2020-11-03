@@ -47,4 +47,43 @@ If you want to learn more about building native executables, please consult http
 
 Guide: https://quarkus.io/guides/rest-json
 
+#Levantar una base:
+
+docker run --ulimit memlock=-1:-1 -it --rm=true --memory-swappiness=0 --name quarkus_test -e POSTGRES_USER=quarkus -e POSTGRES_PASSWORD=quarkus -e POSTGRES_DB=quarkusdb -p 5432:5432 postgres:10.5
+
+
+#Ejecutar con live coding y debugging habilitado:
+
+./mvnw compile quarkus:dev
+
+Probar en browser:
+
+http://localhost:8080/resteasy/hello/Pepe
+
+Corroborar esté el puerto de debug usándose:
+
+netstat -an | grep 5005
+
+Importar proyecto en IntelliJ u otro IDE y atacharse
+al Debug, por ej en IntelliJ con:
+
+Run -> Attach to Process
+
+#Probar en Containers:
+
+##JVM:
+
+docker build -f src/main/docker/Dockerfile.jvm -t quarkus-quickstart/getting-started:jvm .
+
+docker run -i --rm -p 8080:8080 quarkus-quickstart/getting-started:jvm
+
+##Nativo:
+(https://quarkus.io/guides/building-native-image#using-a-multi-stage-docker-build )
+
+Nativo con Multi Stage Builds (ver .dockerignore):
+
+docker build -f src/main/docker/Dockerfile.multistage -t quarkus-quickstart/getting-started:native .
+
+docker run -i --rm -p 8080:8080 quarkus-quickstart/getting-started:native
+
 
