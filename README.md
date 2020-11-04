@@ -101,6 +101,8 @@ docker push diegochavezcarro/organization-rest-panache:1.0.0-SNAPSHOT
 Copiarlo desde target/kubernetes/ en la raiz del proyecto, modificar nombre de la imagen (organizacion),
 también agregar variable de entorno con IP del host para postgres
 Si se quiere probar de afuera usar NodePort en el Service
+Agregar limits y request
+Tambien un HPA
 
 #Subir a Kubernetes:
 

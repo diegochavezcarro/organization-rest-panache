@@ -58,6 +58,13 @@ spec:
               fieldPath: metadata.namespace
         image: diegochavezcarro/organization-rest-panache:1.0.0-SNAPSHOT
         imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            memory: 300Mi
+            cpu: 200m
+          limits:
+            memory: 500Mi
+            cpu: 400m
         livenessProbe:
           failureThreshold: 3
           httpGet:
