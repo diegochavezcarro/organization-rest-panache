@@ -1,5 +1,11 @@
 *
-!target/*-runner
-!target/*-runner.jar
-!target/lib/*
-!target/quarkus-app/*
+#En caso de multi-stage build para nativo comentar lo anterior (salvo el *)
+#y descomentar lo siguiente
+!pom.xml
+!src/**
+
+#Para JVM:
+#!target/*-runner
+#!target/*-runner.jar
+#!target/lib/*
+#!target/quarkus-app/*

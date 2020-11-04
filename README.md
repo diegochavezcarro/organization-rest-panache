@@ -82,8 +82,31 @@ docker run -i --rm -p 8080:8080 quarkus-quickstart/getting-started:jvm
 
 Nativo con Multi Stage Builds (ver .dockerignore):
 
-docker build -f src/main/docker/Dockerfile.multistage -t quarkus-quickstart/getting-started:native .
+#darle mas memoria a Docker (yo le di 8GB)
+docker build -f src/main/docker/Dockerfile.multistage -t diegochavezcarro/organization-rest-panache:1.0.0-SNAPSHOT .
 
-docker run -i --rm -p 8080:8080 quarkus-quickstart/getting-started:native
+#Obtener la IP del host para postgres con ipconfig
+docker run -i --rm --env POSTGRESQL_SERVICE_HOST=192.168.0.236 -p 8080:8080 diegochavezcarro/organization-rest-panache:1.0.0-SNAPSHOT
 
+#Subir a Docker Host
 
+docker login
+
+docker push diegochavezcarro/organization-rest-panache:1.0.0-SNAPSHOT
+
+#obtener el kubernetes.yml:
+
+./mvnw package
+
+Copiarlo desde target/kubernetes/ en la raiz del proyecto, modificar nombre de la imagen (organizacion),
+también agregar variable de entorno con IP del host para postgres
+Si se quiere probar de afuera usar NodePort en el Service
+
+#Subir a Kubernetes:
+
+kubectl create -f kubernetes.yml 
+
+Probar en Postman o swagger-ui. Usar "minikube ip" para ver el host
+y el puerto del NodePort
+
+ 
