@@ -86,6 +86,7 @@ Nativo con Multi Stage Builds (ver .dockerignore):
 docker build -f src/main/docker/Dockerfile.multistage -t diegochavezcarro/organization-rest-panache:1.0.0-SNAPSHOT .
 
 #Obtener la IP del host para postgres con ipconfig
+
 docker run -i --rm --env POSTGRESQL_SERVICE_HOST=192.168.0.236 -p 8080:8080 diegochavezcarro/organization-rest-panache:1.0.0-SNAPSHOT
 
 #Subir a Docker Host
@@ -110,5 +111,11 @@ kubectl create -f kubernetes.yml
 
 Probar en Postman o swagger-ui. Usar "minikube ip" para ver el host
 y el puerto del NodePort
+
+#Test de Performance
+
+./jmeter -n -t /Users/diegochavez/stress-tests/quarkus-get-rest-panache.jmx -l results.csv -e -o Reptrt
+
+
 
  
