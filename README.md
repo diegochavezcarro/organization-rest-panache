@@ -112,7 +112,7 @@ kubectl create -f kubernetes.yml
 Probar en Postman o swagger-ui. Usar "minikube ip" para ver el host
 y el puerto del NodePort
 
-#Test de Performance
+#Test de Performance 
 
 ./jmeter -n -t /Users/diegochavez/stress-tests/quarkus-get-rest-panache.jmx -l results.csv -e -o Reptrt
 
